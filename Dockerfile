@@ -7,14 +7,15 @@ ENV POETRY_VIRTUALENVS_IN_PROJECT=true \
 
 ENV PATH="$VENV_PATH/bin:$PATH"
 
-COPY pyproject.toml poetry.lock prestart.sh backend_pre_start.py /code/
+COPY pyproject.toml poetry.lock prestart.sh backend_pre_start.py alembic.ini /code/
 
-RUN pip install poetry tenacity psycopg2 \
+RUN pip install poetry tenacity psycopg2 alembic \
   && poetry config virtualenvs.create false \
   && poetry install \
   && chmod -R 777 ./prestart.sh
 
 COPY ./app /code/app
+COPY ./alembic /code/alembic
 
 ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 

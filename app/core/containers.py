@@ -11,5 +11,4 @@ class Container(containers.DeclarativeContainer):
     wiring_config = containers.WiringConfiguration(modules=[])
 
     db = providers.Singleton(Database, db_url=settings.SQLALCHEMY_DATABASE_URL)
-
-    get_session = db.provided.get_session
+    db_create_database = providers.Factory(Database.create_database, self=db)

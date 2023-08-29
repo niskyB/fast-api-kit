@@ -12,7 +12,7 @@ Base = declarative_base()
 
 class Database:
     def __init__(self, db_url: str) -> None:
-        self._engine = create_engine(db_url, echo=False, pool_pre_ping=True)
+        self._engine = create_engine(db_url)
         self._session_factory = sessionmaker(
             autocommit=False,
             autoflush=False,
