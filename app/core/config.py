@@ -26,6 +26,10 @@ class Settings(BaseSettings):
     POSTGRES_PORT: Optional[int] = None
     POSTGRES_DB: Optional[str] = None
 
+    TENANT_ID: str = ""
+    CLIENT_ID: str = ""
+    CLIENT_SECRET: str = ""
+
     @property
     def SQLALCHEMY_DATABASE_URL(self):
         return sqlalchemy.engine.URL.create(

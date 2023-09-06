@@ -6,6 +6,6 @@ from app.api.api_v1.endpoints import user
 
 def include_router(app: FastAPI) -> None:
     api_router = APIRouter()
-    api_router.include_router(user.router, prefix="/user", tags=["User"])
+    api_router.include_router(user.router, prefix="/users", tags=["Users"])
 
     app.include_router(api_router, prefix=settings.API_V1_STR)

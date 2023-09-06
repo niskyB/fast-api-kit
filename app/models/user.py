@@ -1,10 +1,15 @@
-from sqlalchemy import String, Boolean
-from app.models.base_model import BaseModel
-from sqlalchemy.orm import mapped_column
-from app.db import Base
+from enum import Enum
 
 
-class User(Base, BaseModel):
-    __tablename__ = "user"
-    name = mapped_column(String(50), nullable=False)
-    isActive = mapped_column(Boolean, default=False, nullable=False)
+class UserProperties(str, Enum):
+    ACCOUNT_ENABLED = "accountEnabled"
+    DISPLAY_NAME = "displayName"
+    MAIL = "mail"
+    MOBILE_PHONE = "mobilePhone"
+    GIVEN_NAME = "givenName"
+    CITY = "city"
+    DEPARTMENT = "department"
+    BUSINESS_PHONES = "businessPhones"
+    OFFICE_LOCATION = "officeLocation"
+    JOB_TITLE = "jobTitle"
+    OTHER_MAILS = "otherMails"

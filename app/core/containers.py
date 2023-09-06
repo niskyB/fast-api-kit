@@ -2,7 +2,6 @@ from dependency_injector import containers, providers
 
 from app.core import settings
 from app.db.database import Database
-from app.repositories.user import UserRepository
 from app.services.user import UserService
 
 
@@ -18,8 +17,4 @@ class Container(containers.DeclarativeContainer):
 
     db = providers.Singleton(Database, db_url=settings.SQLALCHEMY_DATABASE_URL)
 
-    user_repository = providers.Factory(
-        UserRepository, get_session=db.provided.get_session
-    )
-
-    user_service = providers.Factory(UserService, user_repository=user_repository)
+    user_service = providers.Factory(UserService)
